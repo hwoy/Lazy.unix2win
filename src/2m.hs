@@ -2,24 +2,11 @@ import qualified Data.ByteString.Lazy as Bs
 import Data.Word
 import System.Environment
 
-data CRF a = WIN | MAC a | UNIX a | OTHER a a deriving(Show)
-
-cr::Word8
-cr = 13
-
-lf::Word8
-lf = 10
-
+import Crf
 
 tomac [] = []
 tomac (x:xs)= tom x xs
                 where
-                    parsing a b
-                                | a==cr && b==lf = WIN
-                                | a==cr && b/=lf = MAC b
-                                | a/=cr && x==lf = UNIX a
-                                |otherwise = OTHER a b
-                    
                     tom a [] = if a==lf then [cr] else [a]                          -- *unix
                     tom a (x:xs) = case (parsing a x) of
                                    WIN                     -> cr:(tomac xs)          -- *windows

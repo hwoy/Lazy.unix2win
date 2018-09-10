@@ -2,25 +2,11 @@ import qualified Data.ByteString.Lazy as Bs
 import Data.Word
 import System.Environment
 
-data CRF a = WIN | MAC a | UNIX a | OTHER a a deriving(Show)
-
-cr::Word8
-cr = 13
-
-lf::Word8
-lf = 10
-
+import Crf
 
 towin [] = []
 towin (x:xs)= twin x xs
-                where
-                    parsing a b
-                                | a==cr && b==lf = WIN
-                                | a==cr && b/=lf = MAC b
-                                | a/=cr && x==lf = UNIX a
-                                |otherwise = OTHER a b
-                                
-                                
+                where           
                     twin a [] = if (a==cr) || (a==lf) then [cr,lf] else [a]               -- *unix or *mac
                     twin a (x:xs) = case (parsing a x) of
                                    WIN                     -> cr:lf:(towin xs)             -- windows
