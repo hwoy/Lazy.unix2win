@@ -33,3 +33,40 @@ executable w2u
   hs-source-dirs:      src
   default-language:    Haskell2010
   GHC-Options:
+
+executable m2u
+  main-is:             m2u.hs
+  -- other-modules:
+  -- other-extensions:
+  build-depends:       base >=4.11 && <4.12,bytestring
+  hs-source-dirs:      src
+  default-language:    Haskell2010
+  GHC-Options:
+
+executable u2m
+  main-is:             u2m.hs
+  -- other-modules:
+  -- other-extensions:
+  build-depends:       base >=4.11 && <4.12,bytestring
+  hs-source-dirs:      src
+  default-language:    Haskell2010
+  GHC-Options:
+
+executable w2m
+  main-is:             w2m.hs
+  -- other-modules:
+  -- other-extensions:
+  build-depends:       base >=4.11 && <4.12,bytestring
+  hs-source-dirs:      src
+  default-language:    Haskell2010
+  GHC-Options:
+
+executable m2w
+  main-is:             m2w.hs
+  -- other-modules:
+  -- other-extensions:
+  build-depends:       base >=4.11 && <4.12,bytestring
+  hs-source-dirs:      src
+  default-language:    Haskell2010
+  GHC-Options:
+

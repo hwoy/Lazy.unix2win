@@ -15,7 +15,7 @@ win2mac (x:xs)= w2m x xs
                     w2m a [] = [a]
                     w2m a (x:xs)
                                 | a==cr && x==lf = cr:(win2mac xs)         -- *windows
-                                | a==cr && x/=lf = cr:x:(unix2win xs)      -- mac
+                                | a==cr && x/=lf = cr:x:(win2mac xs)      -- mac
                                 | a/=cr && x==lf = a:lf:(win2mac xs)       -- unix
                                 | otherwise = a:(w2m x xs)
 
