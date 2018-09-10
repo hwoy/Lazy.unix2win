@@ -2,7 +2,7 @@ import qualified Data.ByteString.Lazy as Bs
 import Data.Word
 import System.Environment
 
-import Crf
+import CrLf
 
 tomac [] = []
 tomac (x:xs)= tom x xs

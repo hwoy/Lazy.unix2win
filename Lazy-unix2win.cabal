@@ -18,7 +18,7 @@ cabal-version:       >=1.10
 
 executable 2w
   main-is:             2w.hs
-  other-modules:	   Crf
+  other-modules:	   CrLf
   -- other-extensions:
   build-depends:       base >=4.11 && <4.12,bytestring
   hs-source-dirs:      src
@@ -27,7 +27,7 @@ executable 2w
 
 executable 2u
   main-is:             2u.hs
-  other-modules:	   Crf
+  other-modules:	   CrLf
   -- other-extensions:
   build-depends:       base >=4.11 && <4.12,bytestring
   hs-source-dirs:      src
@@ -36,7 +36,7 @@ executable 2u
 
 executable 2m
   main-is:             2m.hs
-  other-modules:	   Crf
+  other-modules:	   CrLf
   -- other-extensions:
   build-depends:       base >=4.11 && <4.12,bytestring
   hs-source-dirs:      src

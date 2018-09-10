@@ -1,7 +1,7 @@
-module Crf where
+module CrLf where
 import Data.Word
 
-data CRF a = WIN | MAC a | UNIX a | OTHER a a deriving(Show)
+data CRLF a = WIN | MAC a | UNIX a | OTHER a a deriving(Show)
 
 cr::Word8
 cr = 13
