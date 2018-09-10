@@ -2,13 +2,21 @@ import qualified Data.ByteString.Lazy as Bs
 import Data.Word
 import System.Environment
 
+cr::Word8
+cr = 13
+
+lf::Word8
+lf = 10
+
+
 unix2win [] = []
 unix2win (x:xs)= u2w x xs
                 where
-                    u2w a [] = if a==10 then [13,10] else [a]
+                    u2w a [] = if a==lf then [cr,lf] else [a]
                     u2w a (x:xs)
-                                | a==13 && x==10 = 13:10:(unix2win xs)
-                                | a/=13 && x==10 = a:13:10:(unix2win xs)
+                                | a==cr && x==lf = cr:lf:(unix2win xs)      -- windows
+                                | a==cr && x/=lf = cr:x:(unix2win xs)       -- mac
+                                | a/=cr && x==lf = a:cr:lf:(unix2win xs)    -- *unix
                                 | otherwise = a:(u2w x xs)
 
 file2win [] = return ()
