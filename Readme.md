@@ -1,4 +1,4 @@
-### Lazy.unix2win
+# Lazy.unix2win
 - 2w is macos or unix to windows file converter.
 - 2u is macos or windows to unix file converter.
 - 2m is windows or unix to macos file converter.
