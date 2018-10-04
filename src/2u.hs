@@ -7,12 +7,16 @@ import CrLf
 tounix [] = []
 tounix (x:xs)= tunix x xs
                 where
-                    tunix a [] = if a==cr then [lf] else [a]                               -- *mac
+                    tunix a [] = if a==cr then [lf] else [a]               -- *mac
                     tunix a (x:xs) = case (parsing a x) of
-                                   WIN                     -> lf:(tounix xs)                -- *windows
-                                   MAC right               -> lf:right:(tounix xs)          -- *mac
-                                   UNIX left               -> left:lf:(tounix xs)           -- unix
-                                   OTHER left right        -> left:(tunix right xs)         -- other
+                      WIN              -> lf:(tounix xs)                    -- *windows
+                      MAC              -> lf:lf:(tounix xs)                 -- *mac
+                      MACL left        -> left:(tunix cr xs)                -- *mac
+                      MACR right       -> lf:right:(tounix xs)              -- *mac
+                      UNIX             -> lf:lf:(tounix xs)                 -- unix
+                      UNIXL left       -> left:(tunix lf xs)                -- unix
+                      UNIXR right      -> lf:right:(tounix xs)              -- unix
+                      OTHER left right -> left:(tunix right xs)             -- other
 
 
 file2unix [] = return ()

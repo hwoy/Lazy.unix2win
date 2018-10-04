@@ -7,12 +7,16 @@ import CrLf
 towin [] = []
 towin (x:xs)= twin x xs
                 where           
-                    twin a [] = if (a==cr) || (a==lf) then [cr,lf] else [a]               -- *unix or *mac
+                    twin a [] = if (a==cr) || (a==lf) then [cr,lf] else [a]             -- *unix or *mac
                     twin a (x:xs) = case (parsing a x) of
-                                   WIN                     -> cr:lf:(towin xs)             -- windows
-                                   MAC right               -> cr:lf:right:(towin xs)       -- *mac
-                                   UNIX left               -> left:cr:lf:(towin xs)        -- *unix
-                                   OTHER left right        -> left:(twin right xs)         -- other
+                                   WIN              -> cr:lf:(towin xs)                 -- windows
+                                   MAC              -> cr:lf:cr:lf:(towin xs)           -- *mac
+                                   MACL left        -> left:(twin cr xs)                -- *mac
+                                   MACR right       -> cr:lf:right:(towin xs)           -- *mac
+                                   UNIX             -> cr:lf:cr:lf:(towin xs)           -- *unix
+                                   UNIXL left       -> left:(twin lf xs)                -- *unix
+                                   UNIXR right      -> cr:lf:right:(towin xs)           -- *unix
+                                   OTHER left right -> left:(twin right xs)             -- other
                                    
 
 
