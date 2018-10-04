@@ -7,10 +7,10 @@
 - My first Haskell programming.
 - Created for proof my Haskell skill.
 - unix2dos can convert UNIX file to Dos file.
-- 2w can convert to dos file.
+- 2w can convert any(UNIX or Mac) to Dos file.
 - Dos/Windows end line = CR(13) and LF(10)
 - UNIX/linux end line = LF(10)
-- modern Mac end line = CR(13)
+- Modern Mac end line = CR(13)
 
 ## How to build
 ```sh

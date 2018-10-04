@@ -5,9 +5,11 @@ import System.Directory
 
 import CrLf
 
+towin::[Word8]->[Word8]
 towin [] = []
-towin (x:xs)= twin x xs
-                where           
+towin (byte:bytes)= twin byte bytes
+                where  
+                    twin::Word8->[Word8]->[Word8]
                     twin a [] = if (a==cr) || (a==lf) then [cr,lf] else [a]             -- *unix or *mac
                     twin a (x:xs) = case (parsing a x) of
                                    WIN              -> cr:lf:(towin xs)                 -- windows
@@ -20,12 +22,14 @@ towin (x:xs)= twin x xs
                                    OTHER left right -> left:(twin right xs)             -- other
                                    
 
-
+file2win::[String]->IO()
 file2win [] = return ()
 file2win (x:xs) = let tofile = (x++".win") in Bs.readFile x >>= (Bs.writeFile tofile).Bs.pack.towin.Bs.unpack >> removeFile x >> renameFile tofile x >> file2win xs
 
+usage::[Char]->IO()
 usage xs = putStrLn (xs ++ " is an any to win converter.\nUSAGE:: " ++ xs ++ " file1 file2 ...")
 
+main::IO()
 main =
     getArgs >>=
     (
