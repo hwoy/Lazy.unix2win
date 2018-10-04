@@ -1,6 +1,7 @@
 import qualified Data.ByteString.Lazy as Bs
 import Data.Word
 import System.Environment
+import System.Directory
 
 import CrLf
 
@@ -21,7 +22,7 @@ towin (x:xs)= twin x xs
 
 
 file2win [] = return ()
-file2win (x:xs) = Bs.readFile x >>= (Bs.writeFile (x++".win")).Bs.pack.towin.Bs.unpack >> file2win xs
+file2win (x:xs) = let tofile = (x++".win") in Bs.readFile x >>= (Bs.writeFile tofile).Bs.pack.towin.Bs.unpack >> removeFile x >> renameFile tofile x >> file2win xs
 
 usage xs = putStrLn (xs ++ " is an any to win converter.\nUSAGE:: " ++ xs ++ " file1 file2 ...")
 

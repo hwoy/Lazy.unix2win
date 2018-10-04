@@ -1,6 +1,7 @@
 import qualified Data.ByteString.Lazy as Bs
 import Data.Word
 import System.Environment
+import System.Directory
 
 import CrLf
 
@@ -20,7 +21,7 @@ tounix (x:xs)= tunix x xs
 
 
 file2unix [] = return ()
-file2unix (x:xs) = Bs.readFile x >>= (Bs.writeFile (x++".unx")).Bs.pack.tounix.Bs.unpack >> file2unix xs
+file2unix (x:xs) = let tofile = (x++".unx") in Bs.readFile x >>= (Bs.writeFile tofile).Bs.pack.tounix.Bs.unpack >> removeFile x >> renameFile tofile x >> file2unix xs
 
 usage xs = putStrLn (xs ++ " is an any to unix converter\nUSAGE:: " ++ xs ++ " file1 file2 ...")
 

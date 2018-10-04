@@ -1,6 +1,7 @@
 import qualified Data.ByteString.Lazy as Bs
 import Data.Word
 import System.Environment
+import System.Directory
 
 import CrLf
 
@@ -20,7 +21,7 @@ tomac (x:xs)= tom x xs
 
 
 file2mac [] = return ()
-file2mac (x:xs) = Bs.readFile x >>= (Bs.writeFile (x++".mac")).Bs.pack.tomac.Bs.unpack >> file2mac xs
+file2mac (x:xs) = let tofile = (x++".mac") in Bs.readFile x >>= (Bs.writeFile tofile).Bs.pack.tomac.Bs.unpack >> removeFile x >> renameFile tofile x >> file2mac xs
 
 usage xs = putStrLn (xs ++ " is an any to mac converter.\nUSAGE:: " ++ xs ++ " file1 file2 ...")
 

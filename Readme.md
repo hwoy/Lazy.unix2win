@@ -1,20 +1,20 @@
 # Lazy.unix2win
-- 2w is macos or unix to windows file converter.
-- 2u is macos or windows to unix file converter.
-- 2m is windows or unix to macos file converter.
+- 2w is Mac or UNIX to Windows file converter.
+- 2u is Mac or Windows to UNIX file converter.
+- 2m is Windows or UNIX to Mac file converter.
 
 ## About Lazy.unix2win
-- My first Haskell programs.
-- Created for proof my haskell skill.
-- unix2dos can convert unix file to dos file.
+- My first Haskell programming.
+- Created for proof my Haskell skill.
+- unix2dos can convert UNIX file to Dos file.
 - 2w can convert to dos file.
-- dos/windows end line = CR(13) and LF(10)
-- unix/linux end line = LF(10)
-- modern macos end line = CR(13)
+- Dos/Windows end line = CR(13) and LF(10)
+- UNIX/linux end line = LF(10)
+- modern Mac end line = CR(13)
 
 ## How to build
 ```sh
-$ cabal build
+$ make
 ```
 
 
