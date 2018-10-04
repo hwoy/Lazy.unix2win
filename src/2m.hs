@@ -11,12 +11,12 @@ tomac (x:xs)= tom x xs
                     tom a (x:xs) = case (parsing a x) of
                       WIN              -> cr:(tomac xs)                 -- *windows
                       MAC              -> cr:cr:(tomac xs)              -- mac
-                      MACL left        -> left:(tom cr xs)             -- mac
+                      MACL left        -> left:(tom cr xs)              -- mac
                       MACR right       -> cr:right:(tomac xs)           -- mac
                       UNIX             -> cr:cr:(tomac xs)              -- *unix
-                      UNIXL left       -> left:(tom lf xs)             -- *unix
+                      UNIXL left       -> left:(tom lf xs)              -- *unix
                       UNIXR right      -> cr:right:(tomac xs)           -- *unix
-                      OTHER left right -> left:(tom right xs)          -- other
+                      OTHER left right -> left:(tom right xs)           -- other
 
 
 file2mac [] = return ()
