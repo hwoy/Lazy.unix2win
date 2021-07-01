@@ -14,13 +14,9 @@
 
 ## How to build version 1
 ```sh
-$ make
-```
-## How to build version 2
-```sh
 $ cabal build
 ```
-## How to build version 3
+## How to build version 2
 ```sh
 $ runhaskel Setup.hs configure --prefix="install directory"
 $ runhaskel Setup.hs build
